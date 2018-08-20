@@ -1,0 +1,2 @@
+int initGalvo();
+void closeGalvo();

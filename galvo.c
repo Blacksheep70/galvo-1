@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "galvo.h"
+
 #define PI 3.14159265
 
 #define LDAC_PIN      RPI_V2_GPIO_P1_15
@@ -197,7 +199,7 @@ void drawCircle(double radius, int direction) {
   }
 }
 
-int main() {
+int initGalvo() {
   if (!bcm2835_init()) {
     return 1;
   }
@@ -217,7 +219,6 @@ int main() {
   bcm2835_gpio_write(CLR_PIN, HIGH);
 
   int result = bcm2835_spi_begin();
-  //printf("Got result %d", result);
   
   bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
   bcm2835_spi_setDataMode(BCM2835_SPI_MODE2);
@@ -247,4 +248,8 @@ int main() {
 
   bcm2835_close();
   return 0;
+}
+
+void closeGalvo() {
+  bcm2835_close();
 }
