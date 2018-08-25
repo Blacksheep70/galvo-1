@@ -12,6 +12,7 @@ clean:
 
 main:
 	# not really static, still depends on lib/libgalvo.so, path might be hard-coded at runtime
+	rm -rf ./main
 	go build main.go
 
 shared:
